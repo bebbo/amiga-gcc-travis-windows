@@ -22,4 +22,3 @@ before_install:
     
 script:
  - cd amiga-gcc && make info
-	
