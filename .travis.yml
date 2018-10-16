@@ -18,4 +18,4 @@ script:
   - git clone https://github.com/bebbo/amiga-gcc
   - cd amiga-gcc
   - make update
-  - make all
+  - make all -j4
