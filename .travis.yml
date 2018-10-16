@@ -9,7 +9,7 @@ matrix:
     - os: osx
       osx_image: xcode9.4
       before_install:
-        - brew install autoconf automake gettext gmp isl mpfr util-linux wget
+        - brew install util-linux
         - brew tap discoteq/discoteq; brew install flock
 
 script:
