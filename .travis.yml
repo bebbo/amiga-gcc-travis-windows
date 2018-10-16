@@ -17,5 +17,5 @@ script:
   - sudo mkdir /opt/amiga && sudo chown $(whoami) /opt/amiga
   - git clone https://github.com/bebbo/amiga-gcc
   - cd amiga-gcc
-  - make update
-  - make all -j4
+  - make update -j2
+  - make all -j2
