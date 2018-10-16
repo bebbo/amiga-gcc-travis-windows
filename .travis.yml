@@ -8,11 +8,13 @@ matrix:
       - sudo apt-get install -y make git gcc g++ lhasa libgmp-dev libmpfr-dev libmpc-dev flex gettext texinfo
     - os: osx
       osx_image: xcode9.4
+      sudo: required
       before_install:
         - brew install util-linux
         - brew tap discoteq/discoteq; brew install flock
 
 script:
+  - sudo mkdir /opt/amiga && sudo chown $(whoami) /opt/amiga
   - git clone https://github.com/bebbo/amiga-gcc
   - cd amiga-gcc
   - make update
