@@ -14,5 +14,6 @@ matrix:
 
 script:
   - git clone https://github.com/bebbo/amiga-gcc
-  - cd amiga-gcc && make update
-  - cd amiga-gcc && make all
+  - cd amiga-gcc
+  - make update
+  - make all
