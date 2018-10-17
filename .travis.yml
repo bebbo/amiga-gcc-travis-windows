@@ -12,9 +12,16 @@ matrix:
       before_install:
         - brew install libmpc util-linux
         - brew tap discoteq/discoteq; brew install flock
-
+    - os: windows
+      before_install:
+        - choco install msys2 innosetup
 script:
-  - sudo mkdir /opt/amiga && sudo chown $(whoami) /opt/amiga
+  - if [ "$config" = "windows" ]; then
+      \\msys64\\usr\\bin\\bash.exe -login;
+      echo $PWD;
+    else
+      sudo mkdir /opt/amiga && sudo chown $(whoami) /opt/amiga;
+    fi
   - git clone https://github.com/bebbo/amiga-gcc
   - cd amiga-gcc
   - mkdir -p build-$(uname) 
