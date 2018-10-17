@@ -5,7 +5,8 @@ matrix:
       sudo: required
       language: c
       before_install:
-      - sudo apt-get install -y make git gcc g++ lhasa libgmp-dev libmpfr-dev libmpc-dev flex gettext texinfo
+        - sudo apt-get install -y make git gcc g++ lhasa libgmp-dev libmpfr-dev libmpc-dev flex gettext texinfo
+        - sudo mkdir /opt/amiga && sudo chown $(whoami) /opt/amiga
     - os: osx
       osx_image: xcode9.4
       sudo: required
@@ -13,17 +14,17 @@ matrix:
       before_install:
         - brew install libmpc util-linux
         - brew tap discoteq/discoteq; brew install flock
+        - sudo mkdir /opt/amiga && sudo chown $(whoami) /opt/amiga
     - os: windows
       language: shell
       before_install:
         - choco install msys2 innosetup
+        - ls -l /
+        - ls -l /c/
+        - ls -l /c/tools
+        - /c/tools/msys64/usr/bin/bash.exe -login
+
 script:
-  - if [ "$config" = "windows" ]; then
-      \\msys64\\usr\\bin\\bash.exe -login;
-      echo $PWD;
-    else
-      sudo mkdir /opt/amiga && sudo chown $(whoami) /opt/amiga;
-    fi
   - git clone https://github.com/bebbo/amiga-gcc
   - cd amiga-gcc
   - mkdir -p build-$(uname) 
