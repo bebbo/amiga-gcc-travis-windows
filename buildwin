@@ -8,6 +8,7 @@ cd amiga-gcc
 make clean-prefix >>/c/pipe
 make all -j4 >>/c/pipe
 
+mkdir build
 echo "#define MyAppVersion \"$(date +%Y%m%d)\"" > build/setup2.iss
 cat setup/setup2.iss >> build/setup2.iss
 cp setup/icon.ico build
