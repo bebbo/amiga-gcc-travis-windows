@@ -1,0 +1,33 @@
+#!/bin/bash
+
+pacman -S git base-devel gcc flex gmp-devel mpc-devel mpfr-devel ncurses-devel >>/c/pipe
+
+git clone https://github.com/bebbo/amiga-gcc >>/c/pipe
+
+cd amiga-gcc
+make clean-prefix >>/c/pipe
+make all -j4 >>/c/pipe
+
+echo "#define MyAppVersion \"$(date +%Y%m%d)\"" > build/setup2.iss
+cat setup/setup2.iss >> build/setup2.iss
+cp setup/icon.ico build
+
+cp setup/hello.c /opt/amiga
+cp setup/cmdline.bat /opt/amiga
+
+echo copy dlls >>/c/pipe
+cp /usr/bin/msys-iconv-2.dll /opt/amiga/bin
+cp /usr/bin/msys-intl-8.dll /opt/amiga/bin
+cp /usr/bin/msys-2.0.dll /opt/amiga/bin
+cp /usr/bin/msys-z.dll /opt/amiga/bin
+cp /usr/bin/msys-gcc_s-seh-1.dll /opt/amiga/bin
+cp /usr/bin/msys-stdc++-6.dll /opt/amiga/bin
+cp /usr/bin/msys-mpfr-6.dll /opt/amiga/bin
+cp /usr/bin/msys-mpc-3.dll /opt/amiga/bin
+cp /usr/bin/msys-gmp-10.dll /opt/amiga/bin
+cp /usr/bin/msys-ncursesw6.dll /opt/amiga/bin
+cp /usr/bin/iconv.exe /opt/amiga/bin
+
+/c/Program\ Files\ \(x86\)/Inno\ Setup\ 5/ISCC.exe build/setup2.iss >>/c/pipe
+
+rm /c/pipe
