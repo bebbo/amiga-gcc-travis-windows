@@ -14,6 +14,7 @@ matrix:
         - brew install libmpc util-linux
         - brew tap discoteq/discoteq; brew install flock
     - os: windows
+      language: shell
       before_install:
         - choco install msys2 innosetup
 script:
