@@ -37,6 +37,7 @@ script:
         mkdir -p build-$(uname);
         make update -j2;
         make all -j2;
-        tar czf amiga-gcc-$(uname)-tgz /opt/amiga;
+        tar czf amiga-gcc-$(uname)-$(date +%Y%m%d).tgz /opt/amiga;
+        ls -l
     fi
  

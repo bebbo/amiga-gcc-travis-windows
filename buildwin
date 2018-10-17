@@ -31,5 +31,6 @@ cp /usr/bin/msys-ncursesw6.dll /opt/amiga/bin
 cp /usr/bin/iconv.exe /opt/amiga/bin
 
 /c/Program\ Files\ \(x86\)/Inno\ Setup\ 5/ISCC.exe build/setup2.iss >>/c/tools/pipe
+ls -l Output
 
 rm /c/tools/pipe
