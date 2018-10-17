@@ -7,12 +7,6 @@ matrix:
       before_install:
         - sudo apt-get install -y make git gcc g++ lhasa libgmp-dev libmpfr-dev libmpc-dev flex gettext texinfo
         - sudo mkdir /opt/amiga && sudo chown $(whoami) /opt/amiga
-      script:
-        - git clone https://github.com/bebbo/amiga-gcc
-        - cd amiga-gcc
-        - mkdir -p build-$(uname) 
-        - make update -j2
-        - make all -j2
   
     - os: osx
       osx_image: xcode9.4
@@ -22,21 +16,42 @@ matrix:
         - brew install libmpc util-linux
         - brew tap discoteq/discoteq; brew install flock
         - sudo mkdir /opt/amiga && sudo chown $(whoami) /opt/amiga
-      script:
-        - git clone https://github.com/bebbo/amiga-gcc
-        - cd amiga-gcc
-        - mkdir -p build-$(uname) 
-        - make update -j2
-        - make all -j2
         
     - os: windows
       language: shell
       before_install:
-        - choco install msys2 innosetup
-        - ls -l .
+        - choco install innosetup
+        - pacman -S git base-devel gcc flex gmp-devel mpc-devel mpfr-devel ncurses-devel
         - uname -a
-      script:
-        - cp buildwin /c/tools/msys64/home/bebbo
-        - echo x >/c/pipe
-        - cmd /c "start cmd /k c:\tools\msys64\usr\bin\bash -login"
-        - tail --follow=name --max-unchanged-stats=1 /c/pipe
+        - mkdir /opt/amiga
+
+script:
+ - git clone https://github.com/bebbo/amiga-gcc
+ - cd amiga-gcc
+ - mkdir -p build-$(uname) 
+ - make update -j2
+ - make all -j2
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+        mkdir build;
+        echo "#define MyAppVersion \"$(date +%Y%m%d)\"" > build/setup2.iss;
+        cat setup/setup2.iss >> build/setup2.iss;
+        cp setup/icon.ico build;
+        cp setup/hello.c /opt/amiga;
+        cp setup/cmdline.bat /opt/amiga;
+        echo copy dlls;
+        cp /usr/bin/msys-iconv-2.dll /opt/amiga/bin;
+        cp /usr/bin/msys-intl-8.dll /opt/amiga/bin;
+        cp /usr/bin/msys-2.0.dll /opt/amiga/bin;
+        cp /usr/bin/msys-z.dll /opt/amiga/bin;
+        cp /usr/bin/msys-gcc_s-seh-1.dll /opt/amiga/bin;
+        cp /usr/bin/msys-stdc++-6.dll /opt/amiga/bin;
+        cp /usr/bin/msys-mpfr-6.dll /opt/amiga/bin;
+        cp /usr/bin/msys-mpc-3.dll /opt/amiga/bin;
+        cp /usr/bin/msys-gmp-10.dll /opt/amiga/bin;
+        cp /usr/bin/msys-ncursesw6.dll /opt/amiga/bin;
+        cp /usr/bin/iconv.exe /opt/amiga/bin;
+        /c/Program\ Files\ \(x86\)/Inno\ Setup\ 5/ISCC.exe build/setup2.iss;
+    else
+        tar czf amiga-gcc-$(uname)-tgz /opt/amiga;
+    fi
+ 
