@@ -22,12 +22,14 @@ matrix:
       before_install:
         - choco install msys2 innosetup
         - uname -a
+        - echo $PWD
+        - whoami
 
 script:
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
         cp buildwin /c/tools/msys64/home/bebbo;
         echo x >/c/tools/pipe;
-        cmd /c "start cmd /k c:\tools\msys64\usr\bin\bash --login /home/bebbo/buildwin";
+        cmd /c "start cmd /k c:\tools\msys64\usr\bin\bash --login /c/Users/travis/build/bebbo/crap0000/buildwin";
         tail --follow=name --max-unchanged-stats=1 /c/tools/pipe;
     else
         git clone https://github.com/bebbo/amiga-gcc;
