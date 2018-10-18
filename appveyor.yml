@@ -1,10 +1,10 @@
 version: 1.0.{build}
 install:
 - cmd: cinst msys2 innosetup
-- cmd: c:\tools\msys64\usr\bin\bash.exe --login -c "echo $(uname) $PWD $(whoami)"
-- cmd: c:\tools\msys64\usr\bin\bash.exe --login -c "pacman --noconfirm -S rsync git flex base-devel gcc gmp-devel mpc-devel mpfr-devel ncurses-devel"
-- cmd: c:\tools\msys64\usr\bin\bash.exe --login -c "git clone https://github.com/bebbo/amiga-gcc"
-- cmd: c:\tools\msys64\usr\bin\bash.exe --login -c "mkdir -p /opt/amiga && cd amiga-gcc && make update -j"
-- cmd: c:\tools\msys64\usr\bin\bash.exe --login -c "cd amiga-gcc && make all -j2"
 build_script:
-- cmd: c:\tools\msys64\usr\bin\bash.exe --login -c "echo yehaw"
+- c:\tools\msys64\usr\bin\bash.exe --login -c "echo $(uname) $PWD $(whoami)"
+- c:\tools\msys64\usr\bin\bash.exe --login -c "pacman --noconfirm -S rsync git flex base-devel gcc gmp-devel mpc-devel mpfr-devel ncurses-devel"
+- c:\tools\msys64\usr\bin\bash.exe --login -c "git clone https://github.com/bebbo/amiga-gcc"
+- c:\tools\msys64\usr\bin\bash.exe --login -c "mkdir -p /opt/amiga && cd amiga-gcc && make update -j"
+- c:\tools\msys64\usr\bin\bash.exe --login -c "cd amiga-gcc && make all -j2"
+- c:\tools\msys64\usr\bin\bash.exe --login -c "echo yehaw"
