@@ -5,6 +5,7 @@ pacman --noconfirm -S git flex base-devel gcc gmp-devel mpc-devel mpfr-devel ncu
 git clone https://github.com/bebbo/amiga-gcc >>/c/tools/pipe
 
 cd amiga-gcc
+mkdir -p build-$(uname)
 make update -j2 >>/c/tools/pipe
 make all -j2 >>/c/tools/pipe
 
