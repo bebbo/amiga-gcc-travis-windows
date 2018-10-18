@@ -6,8 +6,8 @@ git clone https://github.com/bebbo/amiga-gcc >>/c/tools/pipe
 
 cd amiga-gcc
 mkdir -p build-$(uname)
-make update -j >>/c/tools/pipe
-make all -j2 >>/c/tools/pipe
+travis_wait 30 make update -j >>/c/tools/pipe
+travis_wait 30 make all -j2 >>/c/tools/pipe
 
 mkdir build
 echo "#define MyAppVersion \"$(date +%Y%m%d)\"" > build/setup2.iss
