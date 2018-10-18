@@ -2,6 +2,4 @@ install:
   - cinst msys2 innosetup
  
  build_script:
-  - c:\tools\msys64\usr\bin\bash --login
-  - echo $PWD
-  - pacman --noconfirm -S rsync git flex base-devel gcc gmp-devel mpc-devel mpfr-devel ncurses-devel
+  - cmd: c:\tools\msys64\usr\bin\bash --login /c/projects/crap0000/appveyor
