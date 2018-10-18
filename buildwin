@@ -11,7 +11,7 @@ make all -j2 >>/c/tools/pipe
 
 mkdir build
 echo "#define MyAppVersion \"$(date +%Y%m%d)\"" > build/setup2.iss
-cat setup/setup2.iss >> build/setup2.iss
+sed <setup/setup2.iss  -e "s|msys64|tools\\\\msys64|g" >> build/setup2.iss
 cp setup/icon.ico build
 
 cp setup/hello.c /opt/amiga
