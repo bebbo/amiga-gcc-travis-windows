@@ -2,4 +2,4 @@ install:
   - cinst msys2 innosetup
  
  build_script:
-  - cmd: c:\tools\msys64\usr\bin\bash --login /c/projects/crap0000/appveyor
+  - c:\tools\msys64\usr\bin\bash.exe --login /c/projects/crap0000/appveyor
