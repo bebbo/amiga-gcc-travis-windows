@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "******** STARTING BUILD ********" >>/c/tools/pipe
+echo $PWD >>/c/tools/pipe
 pacman --noconfirm -S rsync git flex base-devel gcc gmp-devel mpc-devel mpfr-devel ncurses-devel >>/c/tools/pipe
 
 git clone https://github.com/bebbo/amiga-gcc >>/c/tools/pipe
