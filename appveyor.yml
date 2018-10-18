@@ -1,6 +1,9 @@
 version: 1.0.{build}
 build_script:
- - cmd: cinst innosetup msys2
+ - appveyor AddMessage -Category Information "instl 1"
+ - cmd: cinst innosetup 
+ - appveyor AddMessage -Category Information "instl 2"
+ - cmd: cinst msys2 --params "/NoUpdate"
  - appveyor AddMessage -Category Information "build script started"
  - cmd: c:\tools\msys64\usr\bin\bash.exe --login -c "echo $(uname) $PWD $(whoami)"
 #    c:\tools\msys64\usr\bin\bash.exe --login -c "pacman --noconfirm -S rsync git flex base-devel gcc gmp-devel mpc-devel mpfr-devel ncurses-devel"
