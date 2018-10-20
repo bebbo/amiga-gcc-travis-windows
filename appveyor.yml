@@ -13,5 +13,5 @@ build_script:
  - cmd: c:\tools\msys64\usr\bin\bash.exe --login -c "echo yehaw"
  
  artifacts:
-- path: c:\tools\msys64\home\appveyor\amiga-gcc
-- name: logs.tgz
+ - path: c:\tools\msys64\home\appveyor\amiga-gcc
+   name: logs.tgz
