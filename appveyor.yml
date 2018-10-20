@@ -9,5 +9,10 @@ build_script:
  - cmd: c:\tools\msys64\usr\bin\bash.exe --login -c "pacman --noconfirm -S rsync git flex base-devel gcc gmp-devel mpc-devel mpfr-devel ncurses-devel"
  - cmd: c:\tools\msys64\usr\bin\bash.exe --login -c "git clone https://github.com/bebbo/amiga-gcc"
  - cmd: c:\tools\msys64\usr\bin\bash.exe --login -c "mkdir -p /opt/amiga && cd amiga-gcc && make update -j"
- - cmd: c:\tools\msys64\usr\bin\bash.exe --login -c "cd amiga-gcc && make all -j4"
+ - cmd: c:\tools\msys64\usr\bin\bash.exe --login -c "cd amiga-gcc && make all -j4 || tar czf logs.tgz log/*"
  - cmd: c:\tools\msys64\usr\bin\bash.exe --login -c "echo yehaw"
+ 
+ artifacts:
+
+- path: c:\tools\msys64\home\appveyor\amiga-gcc
+  name: logs.tgz
