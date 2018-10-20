@@ -12,6 +12,6 @@ build_script:
  - cmd: c:\tools\msys64\usr\bin\bash.exe --login -c "cd amiga-gcc && make all -j4 || tar czf logs.tgz log/*"
  - cmd: c:\tools\msys64\usr\bin\bash.exe --login -c "echo yehaw"
  
- artifacts:
+artifacts:
  - path: c:\tools\msys64\home\appveyor\amiga-gcc
    name: logs.tgz
