@@ -1,1 +1,3 @@
 # crap0000
+
+Experiments to get amiga-gcc building for Linux, MacOs and Windows...
