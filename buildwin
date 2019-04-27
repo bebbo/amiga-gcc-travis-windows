@@ -1,26 +1,32 @@
 #!/bin/bash
-echo "******** STARTING BUILD ********" >>/c/tools/pipe
-echo $PWD >>/c/tools/pipe
-pacman --noconfirm -S rsync git flex base-devel gcc gmp-devel mpc-devel mpfr-devel ncurses-devel >>/c/tools/pipe
+echo "******** STARTING BUILD ********" 
+echo $PWD 
+pacman --noconfirm -S rsync git flex base-devel gcc gmp-devel mpc-devel mpfr-devel ncurses-devel 
 
-git clone https://github.com/bebbo/amiga-gcc >>/c/tools/pipe
+git clone https://github.com/bebbo/amiga-gcc 
 
 mkdir -p /opt/amiga
 
 cd amiga-gcc
 mkdir -p build-$(uname)
-make update -j >>/c/tools/pipe
-make all -j2 >>/c/tools/pipe
+make update -j 
+make all -j2 
 
 mkdir build
 echo "#define MyAppVersion \"$(date +%Y%m%d)\"" > build/setup2.iss
 sed <setup/setup2.iss  -e "s|msys64|tools\\\\msys64|g" >> build/setup2.iss
 cp setup/icon.ico build
 
+echo "#define MyAppVersion \"$(date +%Y%m%d)\"" > build/setup2.iss
+cat setup/setup2.iss >> build/setup2.iss
+cp setup/icon.ico build
+
+echo copy support files
 cp setup/hello.c /opt/amiga
 cp setup/cmdline.bat /opt/amiga
+cp setup/bat2exe.exe /opt/amiga/bin/
 
-echo copy dlls >>/c/tools/pipe
+echo copy dlls
 cp /usr/bin/msys-iconv-2.dll /opt/amiga/bin
 cp /usr/bin/msys-intl-8.dll /opt/amiga/bin
 cp /usr/bin/msys-2.0.dll /opt/amiga/bin
@@ -32,8 +38,19 @@ cp /usr/bin/msys-mpc-3.dll /opt/amiga/bin
 cp /usr/bin/msys-gmp-10.dll /opt/amiga/bin
 cp /usr/bin/msys-ncursesw6.dll /opt/amiga/bin
 cp /usr/bin/iconv.exe /opt/amiga/bin
+cp /usr/bin/cp.exe /opt/amiga/bin
+cp /usr/bin/echo.exe /opt/amiga/bin
+cp /usr/bin/find.exe /opt/amiga/bin
+cp /usr/bin/ls.exe /opt/amiga/bin
+cp /usr/bin/mkdir.exe /opt/amiga/bin
+cp /usr/bin/rm.exe /opt/amiga/bin
+cp /usr/bin/sh.exe /opt/amiga/bin
+cp /usr/bin/touch.exe /opt/amiga/bin
+cp /usr/bin/uname.exe /opt/amiga/bin
+cp /usr/bin/which.exe /opt/amiga/bin
+cp /usr/bin/make.exe /opt/amiga/bin/_make.exe 
 
-/c/Program\ Files\ \(x86\)/Inno\ Setup\ 5/ISCC.exe build/setup2.iss >>/c/tools/pipe
+/c/Program\ Files\ \(x86\)/Inno\ Setup\ 5/ISCC.exe build/setup2.iss 
 
-echo "******** STOP BUILD ********" >>/c/tools/pipe
+echo "******** STOP BUILD ********" 
 rm /c/tools/pipe
