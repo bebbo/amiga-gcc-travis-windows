@@ -28,7 +28,7 @@ matrix:
 script:
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
         echo x >/c/tools/pipe;
-        travis_wait 60 cmd /c "c:\\tools\\msys64\\usr\\bin\\bash --login /c/Users/travis/build/bebbo/crap0000/buildwin";
+        travis_wait 60 cmd /c "c:\\\\tools\\\\msys64\\\\usr\\\\bin\\\\bash --login /c/Users/travis/build/bebbo/crap0000/buildwin";
     else
         git clone https://github.com/bebbo/amiga-gcc;
         cd amiga-gcc;
