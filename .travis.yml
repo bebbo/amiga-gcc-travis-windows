@@ -16,7 +16,7 @@ script:
       git clone https://github.com/bebbo/amiga-gcc;
    fi
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-      wget https://franke.ms/msys.tgz;
+      wget --progress=bar:force https://franke.ms/msys.tgz;
    fi
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
       tar xzf msys.tgz;
