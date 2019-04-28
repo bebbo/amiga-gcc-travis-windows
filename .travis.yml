@@ -3,6 +3,7 @@ matrix:
     - os: windows
       language: shell
       before_install:
+        - choco install msys2 innosetup 
         - uname -a
         - echo $PWD
         - whoami
