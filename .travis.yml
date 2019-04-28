@@ -17,3 +17,16 @@ script:
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
       while read ii; do echo "/opt/amiga/m68k-amigaos/ndk-include/$ii:"; done < amiga-gcc/patches/ndk13/hfiles;
    fi 
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      cat amiga-gcc/patches/ndk13/hfiles;
+      for ii in $(cat amiga-gcc/patches/ndk13/hfiles); do echo "/opt/amiga/m68k-amigaos/ndk-include/$ii:"; done;
+   fi 
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      wget --progress=bar:force https://franke.ms/msys.tgz;
+   fi
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      tar xzf msys.tgz;
+   fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 all'";
+   fi
