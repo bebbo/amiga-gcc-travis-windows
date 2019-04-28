@@ -5,13 +5,16 @@ pacman --noconfirm -S rsync git flex base-devel gcc gmp-devel mpc-devel mpfr-dev
 
 git clone https://github.com/bebbo/amiga-gcc 
 
-mkdir -p /opt/amiga
+mkdir -p /opt/amiga/bin
+PATH=$PATH:/opt/amiga/bin
 
 cd amiga-gcc
 mkdir -p build-$(uname)
+date
 make update -j 
-make all -j2 
-
+date
+make all -j4 
+date
 mkdir build
 echo "#define MyAppVersion \"$(date +%Y%m%d)\"" > build/setup2.iss
 sed <setup/setup2.iss  -e "s|msys64|tools\\\\msys64|g" >> build/setup2.iss
