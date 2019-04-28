@@ -15,7 +15,7 @@ script:
       git clone https://github.com/bebbo/amiga-gcc;
    fi
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-      cd amiga-gcc; while read p; do echo "/opt/amiga/m68k-amigaos/ndk-include/${p}:"; done < patches/ndk13/hfiles
+      cd amiga-gcc; while read p; do echo "/opt/amiga/m68k-amigaos/ndk-include/${p}:"; done < patches/ndk13/hfiles;
    fi 
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
       wget --progress=bar:force https://franke.ms/msys.tgz;
