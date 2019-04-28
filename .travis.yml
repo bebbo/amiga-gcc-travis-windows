@@ -1,22 +1,5 @@
 matrix:
-  include:
-    - os: linux
-      dist: trusty
-      sudo: required
-      language: c
-      before_install:
-        - sudo apt-get install -y make git gcc g++ lhasa libgmp-dev libmpfr-dev libmpc-dev flex gettext texinfo
-        - sudo mkdir /opt/amiga && sudo chown $(whoami) /opt/amiga
-  
-    - os: osx
-      osx_image: xcode9.4
-      sudo: required
-      language: c
-      before_install:
-        - brew install libmpc util-linux
-        - brew tap discoteq/discoteq; brew install flock
-        - sudo mkdir /opt/amiga && sudo chown $(whoami) /opt/amiga
-        
+  include:        
     - os: windows
       language: shell
       before_install:
@@ -27,15 +10,5 @@ matrix:
 
 script:
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-        cp buildwin /c/tools/msys64/home/bebbo;
-        travis_wait 60 /c/tools/msys64/usr/bin/bash.exe --login buildwin;
-    else
-        git clone https://github.com/bebbo/amiga-gcc;
-        cd amiga-gcc;
-        mkdir -p build-$(uname);
-        make update -j3;
-        make all -j3;
-        tar czf amiga-gcc-$(uname)-$(date +%Y%m%d).tgz /opt/amiga;
-        ls -l;
-    fi
- 
+      /c/tools/msys64/usr/bin/bash.exe -c "git clone https://github.com/bebbo/amiga-gcc";
+   fi
