@@ -7,11 +7,8 @@ mkdir -p /opt/amiga/bin
 PATH=$PATH:/opt/amiga/bin
 
 cd amiga-gcc
-mkdir -p build-$(uname)
 date
-make update -j 
-date
-make all -j4 
+make ndk13 all -j3
 date
 mkdir build
 echo "#define MyAppVersion \"$(date +%Y%m%d)\"" > build/setup2.iss
@@ -42,6 +39,7 @@ cp /usr/bin/iconv.exe /opt/amiga/bin
 cp /usr/bin/cp.exe /opt/amiga/bin
 cp /usr/bin/echo.exe /opt/amiga/bin
 cp /usr/bin/find.exe /opt/amiga/bin
+cp /usr/bin/grep.exe /opt/amiga/bin
 cp /usr/bin/ls.exe /opt/amiga/bin
 cp /usr/bin/mkdir.exe /opt/amiga/bin
 cp /usr/bin/rm.exe /opt/amiga/bin
