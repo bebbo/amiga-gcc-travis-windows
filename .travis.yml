@@ -3,12 +3,12 @@ matrix:
     - os: windows
       language: shell
       before_install:
-        - choco install msys2 innosetup
         - uname -a
         - echo $PWD
         - whoami
 
 script:
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-      /c/tools/msys64/usr/bin/bash.exe -c "git clone https://github.com/bebbo/amiga-gcc";
+	echo $PWD;
+	git clone https://github.com/bebbo/amiga-gcc;
    fi
