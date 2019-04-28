@@ -6,7 +6,6 @@ matrix:
         - choco install innosetup 
         - uname -a
         - echo $PWD
-        - whoami
 
 script:
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
