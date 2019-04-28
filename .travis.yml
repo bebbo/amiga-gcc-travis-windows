@@ -3,7 +3,7 @@ matrix:
     - os: windows
       language: shell
       before_install:
-        - choco install msys2 innosetup 
+        - choco install innosetup 
         - uname -a
         - echo $PWD
         - whoami
@@ -11,6 +11,14 @@ matrix:
 script:
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
       echo $PWD;
+   fi
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
       git clone https://github.com/bebbo/amiga-gcc;
-      powershell -executionpolicy bypass -command "c:\\tools\\msys64\\usr\\bin\\bash.exe --login buildwin";
+   fi
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      wget https://franke.ms/msys64.zip;
+      unzip msys64.zip
+   fi
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login buildwin";
    fi
