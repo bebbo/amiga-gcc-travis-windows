@@ -12,5 +12,5 @@ script:
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
       echo $PWD;
       git clone https://github.com/bebbo/amiga-gcc;
-      powershell -executionpolicy bypass -command '{dir c:\\tools}';
+      powershell -executionpolicy bypass -command "c:\\tools\\msys64\\usr\\bin\\bash.exe --login buildwin";
    fi
