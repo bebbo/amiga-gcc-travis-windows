@@ -11,4 +11,5 @@ script:
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
       echo $PWD;
       git clone https://github.com/bebbo/amiga-gcc;
+      make -C amiga-gcc;
    fi
