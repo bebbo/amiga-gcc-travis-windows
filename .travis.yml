@@ -17,7 +17,9 @@ script:
    fi
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
       wget https://franke.ms/msys64.zip;
-      unzip msys64.zip
+   fi
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      unzip msys64.zip;
    fi
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
       powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login buildwin";
