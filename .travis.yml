@@ -22,11 +22,11 @@ script:
       tar xzf msys.tgz;
    fi
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 ndk13'";
+      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 ndk13'";
    fi
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 ndk13'";
+      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 ndk13'";
    fi
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 all'";
+      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 all'";
    fi
