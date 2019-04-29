@@ -21,5 +21,17 @@ script:
       tar xzf msys64.tgz;
    fi
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-      travis_wait 60 powershell -executionpolicy bypass -command "c:\\\\Users\\\\travis\\\\build\\\\bebbo\\\\crap0000\\\\msys64\\\\usr\\\\bin\\\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 all'";
+      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 ndk13 projects/binutils/configure'";
+   fi
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 binutils projects/gcc/configure'";
+   fi
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 gcc projects/newlib-cygwin/newlib/configure'";
+   fi
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 newlib projects/libnix/Makefile.gcc6'";
+   fi
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 all'";
    fi
