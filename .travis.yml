@@ -27,7 +27,10 @@ script:
       powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 binutils projects/gcc/configure'";
    fi
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 gcc projects/newlib-cygwin/newlib/configure'";
+      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 gdb'";
+   fi
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 gcc";
    fi
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
       powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 newlib projects/libnix/Makefile.gcc6'";
