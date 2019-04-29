@@ -9,8 +9,11 @@ matrix:
       cache:
         directories:
         - ./msys64/
-      script:
-       - uname
+      jobs:
+        include:
+          - stage: foo
+            script:
+            - uname
 
 script:
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
