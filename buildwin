@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "******** STARTING BUILD ********" 
 echo $PWD 
-#pacman --noconfirm -S rsync git flex base-devel gcc gmp-devel mpc-devel mpfr-devel ncurses-devel 
+#pacman --noconfirm -S rsync git flex base-devel gcc gmp-devel mpc-devel mpfr-devel ncurses-devel --overwrite /usr/bin/msys-2.0.dll 
 
 mkdir -p /opt/amiga/bin
 PATH=$PATH:/opt/amiga/bin
