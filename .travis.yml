@@ -13,8 +13,8 @@ jobs:
     script:
     - uname
     - wget --progress=bar:force https://franke.ms/msys64.tgz
-    - rm -rf msys64
-    - tar xzf msys64.tgz
-    - mkdir msys64/home/travis && cd msys64/home/travis && git clone https://github.com/bebbo/amiga-gcc;
-    - powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'echo $PWD'"
+    - rm -rf ../msys64
+    - tar -C .. xzf msys64.tgz
+    - mkdir -p ../msys64/home/travis && cd ../msys64/home/travis && git clone https://github.com/bebbo/amiga-gcc;
+    - powershell -executionpolicy bypass -command "..\\msys64\\usr\\bin\\bash.exe --login -c 'echo $PWD'"
 
