@@ -15,10 +15,10 @@ script:
       git clone https://github.com/bebbo/amiga-gcc;
    fi
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-      wget --progress=bar:force https://franke.ms/msys64.tgz;
+      wget --progress=bar:force https://franke.ms/msys.tgz;
    fi
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-      tar xzf msys64.tgz;
+      tar xzf msys.tgz;
    fi
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
       powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 all'";
