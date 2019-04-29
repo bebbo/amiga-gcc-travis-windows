@@ -3,6 +3,7 @@ matrix:
     - os: windows
       language: shell
       before_install:
+        - apt-get xz
         - choco install innosetup 
         - uname -a
         - echo $PWD
