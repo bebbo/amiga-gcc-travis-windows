@@ -1,88 +1,28 @@
 matrix:
   include:        
-    - os: linux
-      dist: trusty
-      sudo: required
-      language: c
-      before_install:
-        - sudo apt-get install -y make git gcc g++ lhasa libgmp-dev libmpfr-dev libmpc-dev flex gettext texinfo
-        - sudo mkdir /opt/amiga && sudo chown $(whoami) /opt/amiga
-
-    - os: osx
-      osx_image: xcode9.4
-      sudo: required
-      language: c
-      before_install:
-        - brew install libmpc util-linux
-        - brew tap discoteq/discoteq; brew install flock
-        - sudo mkdir /opt/amiga && sudo chown $(whoami) /opt/amiga 
-
     - os: windows
       language: shell
       before_install:
         - choco install innosetup 
+        - uname -a
+        - echo $PWD
 
-jobs:
-  include:
-    - stage: clone amiga-gcc
-      script:
-      - git clone https://github.com/bebbo/amiga-gcc
-    - stage: get msys64
-      script:
-      - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-          wget --progress=bar:force https://franke.ms/msys64.tgz;
-        fi
-    - stage: unpack msys64
-      script:
-      - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-          tar xzf msys64.tgz;
-        fi
-    - stage: make ndk13
-      script:
-      - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-          powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 ndk13 projects/binutils/configure'";
-        else
-          cd amiga-gcc && make -j3 ndk; 
-        fi
-    - stage: make binutils
-      script:
-      - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-          powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 binutils projects/gcc/configure'";
-        else
-          cd amiga-gcc && make -j3 binutils; 
-        fi
-    - stage: make gdb
-      script:
-      - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-          powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 gdb'";
-        else
-          cd amiga-gcc && make -j3 gdb; 
-        fi
-    - stage: make gcc
-      script:
-      - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-          powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 gcc'";
-        else
-          cd amiga-gcc && make -j3 gcc; 
-        fi
-    - stage: make newlib
-      script:
-      - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-          powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 newlib'";
-        else
-          cd amiga-gcc && make -j3 newlib; 
-        fi
-    - stage: make libnix
-      script:
-      - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-          powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 libnix'";
-        else
-          cd amiga-gcc && make -j3 libnix; 
-        fi
-    - stage: make all
-      script:
-      - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-          powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 all'";
-        else
-          cd amiga-gcc && make -j3 all; 
-        fi
+script:
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      echo $PWD;
+   fi
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      git clone https://github.com/bebbo/amiga-gcc;
+   fi
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      wget --progress=bar:force https://franke.ms/msys64.tgz;
+   fi
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      tar xzf msys64.tgz;
+   fi
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 binutils projects/gcc/configure'";
+   fi
+ - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      powershell -executionpolicy bypass -command "c:\\Users\\travis\\build\\bebbo\\crap0000\\msys64\\usr\\bin\\bash.exe --login -c 'cd /c/Users/travis/build/bebbo/crap0000/amiga-gcc ; make -j3 gdb'";
+   fi
