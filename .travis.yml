@@ -6,8 +6,8 @@ before_install:
 - echo $PWD
 cache:
   directories:
-  - ./build/bebbo/crap0000/msys64/
-  - ./build/bebbo/crap0000/amiga/
+  - /c/Users/travis/build/bebbo/crap0000/msys64/
+  - /c/Users/travis/build/bebbo/crap0000/amiga/
 jobs:
   include:
   - stage: load cache
