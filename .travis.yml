@@ -14,6 +14,6 @@ jobs:
     - uname
     - wget --progress=bar:force https://franke.ms/msys64.tgz
     - rm -rf ../msys64
-    - tar -C .. xzf msys64.tgz
+    - tar xzf msys64.tgz -C ..
     - powershell -executionpolicy bypass -command "..\\msys64\\usr\\bin\\bash.exe --login -c 'echo $PWD'"
 
