@@ -12,3 +12,7 @@ jobs:
   - stage: load cache
     script:
     - uname
+    - wget --progress=bar:force https://franke.ms/msys64.tgz
+    - rm -rf msys64
+    - tar xzf msys64.tgz
+    - cd msys64/home/travis && git clone https://github.com/bebbo/amiga-gcc;
