@@ -8,7 +8,7 @@ matrix:
         - echo $PWD
       cache:
         directories:
-	- $(HOME)/msys64/opt/amiga
+	- $(HOME)/msys64/
 
 script:
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
