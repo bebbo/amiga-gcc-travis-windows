@@ -6,6 +6,9 @@ matrix:
         - choco install innosetup 
         - uname -a
         - echo $PWD
+      cache:
+        directories:
+	- $(HOME)/msys64/opt/amiga
 
 script:
  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
