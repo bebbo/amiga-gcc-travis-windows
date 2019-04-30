@@ -13,10 +13,10 @@ jobs:
   - stage: load cache
     script:
     - uname
+    - mkdir -p amiga
     - wget --progress=bar:force https://franke.ms/msys64.tgz
     - rm -rf msys64
     - tar xzf msys64.tgz
-    - mkdir amiga
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'echo $PWD'"
   - stage: make binutils
     script:
