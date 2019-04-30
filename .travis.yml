@@ -3,23 +3,19 @@ language: shell
 cache:
   directories:
   - /c/Users/travis/build/bebbo/crap0000/amiga/
+ before_install:
+  - if [ "${TRAVIS_BUILD_STAGE_NAME }" != "clear_cache" ]; then wget --progress=bar:force https://franke.ms/msys64.tgz; tar xzf msys64.tgz; fi
 jobs:
   include:
-  - stage: clear cache
+  - stage: clear_cache
     script:
     - rm -rf amiga
     - mkdir -p amiga
   - stage: make binutils
-    before_install:
-    - wget --progress=bar:force https://franke.ms/msys64.tgz
-    - tar xzf msys64.tgz;
     script:
     - git clone https://github.com/bebbo/amiga-gcc
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && PREFIX=$(realpath amiga) make -j3 info binutils gdb gprof'"
   - stage: make gcc
-    before_install:
-    - wget --progress=bar:force https://franke.ms/msys64.tgz
-    - tar xzf msys64.tgz;
     script:
     - git clone https://github.com/bebbo/amiga-gcc
     - mkdir -p      amiga-gcc/projects/binutils
@@ -29,16 +25,10 @@ jobs:
     - echo "done" > amiga-gcc/build-MSYS_NT-10.0/binutils/_done
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && PREFIX=$(realpath amiga) make -j3 info gcc'"
   - stage: make ndk
-    before_install:
-    - wget --progress=bar:force https://franke.ms/msys64.tgz
-    - tar xzf msys64.tgz;
     script:
     - git clone https://github.com/bebbo/amiga-gcc
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && PREFIX=$(realpath amiga) make -j3 info ndk ndk13'"
   - stage: make ndk
-    - wget --progress=bar:force https://franke.ms/msys64.tgz
-    - tar xzf msys64.tgz;
-    - choco install innosetup
     script:
     - git clone https://github.com/bebbo/amiga-gcc
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'echo todo innosetup'"
