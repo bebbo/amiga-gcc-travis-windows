@@ -5,6 +5,7 @@ cache:
   - /c/Users/travis/build/bebbo/crap0000/amiga/
 before_install:
 - if [ "${TRAVIS_BUILD_STAGE_NAME}" != "Clear cache" ]; then wget --progress=bar:force https://franke.ms/msys64.tgz; tar xzf msys64.tgz; fi
+- if [ "${TRAVIS_BUILD_STAGE_NAME}" == "Create setup" ]; then choco install innosetup; fi
 jobs:
   include:
   - stage: Clear cache
@@ -27,15 +28,64 @@ jobs:
   - stage: make ndk
     script:
     - git clone https://github.com/bebbo/amiga-gcc
+    - mkdir -p      amiga-gcc/projects/binutils
+    - echo "fake" > amiga-gcc/projects/binutils/configure
+    - mkdir -p      amiga-gcc/build-MSYS_NT-10.0/binutils 
+    - echo "fake" > amiga-gcc/build-MSYS_NT-10.0/binutils/Makefile
+    - echo "done" > amiga-gcc/build-MSYS_NT-10.0/binutils/_done
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && PREFIX=$(realpath amiga) make -j3 info ndk ndk13'"
   - stage: make newlib
     script:
     - git clone https://github.com/bebbo/amiga-gcc
+    - mkdir -p      amiga-gcc/projects/binutils
+    - echo "fake" > amiga-gcc/projects/binutils/configure
+    - mkdir -p      amiga-gcc/build-MSYS_NT-10.0/binutils 
+    - echo "fake" > amiga-gcc/build-MSYS_NT-10.0/binutils/Makefile
+    - echo "done" > amiga-gcc/build-MSYS_NT-10.0/binutils/_done
     - mkdir -p      amiga-gcc/build-MSYS_NT-10.0/gcc
-    - echo "done" > amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk
     - echo "done" > amiga-gcc/build-MSYS_NT-10.0/gcc/_done
+    - echo "done" > amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info newlib&); while [ ! -f $(realpath amiga)/m68k-amigaos/lib/libc.a ]; do date; sleep 30; done'"
+  - stage: make libnix
+    script:
+    - git clone https://github.com/bebbo/amiga-gcc
+    - mkdir -p      amiga-gcc/projects/binutils
+    - echo "fake" > amiga-gcc/projects/binutils/configure
+    - mkdir -p      amiga-gcc/build-MSYS_NT-10.0/binutils 
+    - echo "fake" > amiga-gcc/build-MSYS_NT-10.0/binutils/Makefile
+    - echo "done" > amiga-gcc/build-MSYS_NT-10.0/binutils/_done
+    - mkdir -p      amiga-gcc/build-MSYS_NT-10.0/gcc
+    - echo "done" > amiga-gcc/build-MSYS_NT-10.0/gcc/_done
+    - mkdir -p      amiga-gcc/build-MSYS_NT-10.0/newlib
+    - echo "done" > amiga-gcc/build-MSYS_NT-10.0/newlib/_done
+    - echo "done" > amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk
+    - echo "done" > amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk
+    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info libnix clib2&); while [ ! -f $(realpath amiga)/m68k-amigaos/libnix/lib/libnix.a ]; do date; sleep 30; done'"
   - stage: create setup
     script:
-    - choco install innosetup
-    - powershell -executionpolicy bypass -command "c:\\tools\\msys64\\usr\\bin\\bash.exe --login -c 'echo todo innosetup'"
+    - git clone https://github.com/bebbo/amiga-gcc
+    - echo "#define MyAppVersion \"$(date +%Y%m%d)\"" > setup2.iss
+    - sed amiga-gcc/setup/setup2.iss -e "s|\\\\msys64\\\\opt\\\\amiga|$(echo $PWD | sed 's|/|\\\\|g' | cut -b4-)\\\\amiga|g" >> setup2.iss
+    - cp  amiga-gcc/setup/icon.ico .
+    - cp  amiga-gcc/setup/hello.c amiga
+    - cp  amiga-gcc/setup/cmdline.bat amiga
+    - cp  amiga-gcc/setup/bat2exe.exe amiga/bin/
+    - echo copy dlls
+    - cp msys64/usr/bin/msys-iconv-2.dll   amiga/bin
+    - cp msys64/usr/bin/msys-intl-8.dll    amiga/bin
+    - cp msys64/usr/bin/msys-2.0.dll       amiga/bin
+    - cp msys64/usr/bin/msys-z.dll         amiga/bin
+    - cp msys64/usr/bin/msys-gcc_s-seh-1.dll amiga/bin
+    - cp msys64/usr/bin/msys-stdc++-6.dll  amiga/bin
+    - cp msys64/usr/bin/msys-mpfr-6.dll    amiga/bin
+    - cp msys64/usr/bin/msys-mpc-3.dll     amiga/bin
+    - cp msys64/usr/bin/msys-gmp-10.dll    amiga/bin
+    - cp msys64/usr/bin/msys-ncursesw6.dll amiga/bin
+    - cp msys64/usr/bin/iconv.exe amiga/bin
+    - cp msys64/usr/bin/sh.exe    amiga/bin
+    - cp msys64/usr/bin/rm.exe    amiga/bin
+    - cp msys64/usr/bin/cp.exe    amiga/bin
+    - cp msys64/usr/bin/uname.exe amiga/bin
+    - cp msys64/usr/bin/which.exe amiga/bin
+    - cp msys64/usr/bin/make.exe  amiga/bin/_make.exe
+    - powershell -executionpolicy bypass -command "cmd /c 'c:\\Program Files (x86)\\Inno Setup 5\\ISCC.exe' setup2.iss"
