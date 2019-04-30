@@ -25,13 +25,13 @@ jobs:
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && PREFIX=$(realpath ../amiga) make -j3 info binutils gdb gprof'"
     - ls -l amiga-gcc/build-MSYS_NT-10.0
     - ls -l amiga-gcc/build-MSYS_NT-10.0/binutils
-    - ls -l amiga/bin
+    - ls -l amiga
   - stage: make ndk
     script:
     - git clone https://github.com/bebbo/amiga-gcc
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && PREFIX=$(realpath ../amiga) make -j3 info ndk ndk13'"
     - ls -l amiga-gcc/build-MSYS_NT-10.0
-    - ls -l amiga/bin
+    - ls -l amiga
   - stage: make gcc
     script:
     - git clone https://github.com/bebbo/amiga-gcc
@@ -40,4 +40,4 @@ jobs:
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && PREFIX=$(realpath ../amiga) make -j3 info gcc'"
     - ls -l amiga-gcc/build-MSYS_NT-10.0
     - ls -l amiga-gcc/build-MSYS_NT-10.0/gcc
-    - ls -l amiga/bin
+    - ls -l amiga
