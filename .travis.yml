@@ -13,6 +13,7 @@ jobs:
   - stage: load cache
     script:
     - uname
+    - rm -rf amiga
     - mkdir -p amiga
     - wget --progress=bar:force https://franke.ms/msys64.tgz
     - rm -rf msys64
@@ -21,12 +22,12 @@ jobs:
   - stage: make binutils
     script:
     - git clone https://github.com/bebbo/amiga-gcc
-    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && PREFIX=$(realpath ../amiga) make info binutils'"
+    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && PREFIX=$(realpath ../amiga) make -j3 info binutils gdb gprof'"
     - ls -l amiga-gcc/build-MSYS_NT-10.0
     - ls -l amiga-gcc/build-MSYS_NT-10.0/binutils
   - stage: make ndk
     script:
     - git clone https://github.com/bebbo/amiga-gcc
-    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && PREFIX=$(realpath ../amiga) make info ndk ndk13'"
+    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && PREFIX=$(realpath ../amiga) make -j3 info ndk ndk13'"
     - ls -l amiga-gcc/build-MSYS_NT-10.0
 
