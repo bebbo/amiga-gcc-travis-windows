@@ -4,10 +4,10 @@ cache:
   directories:
   - /c/Users/travis/build/bebbo/crap0000/amiga/
 before_install:
-- if [ "${TRAVIS_BUILD_STAGE_NAME}" != "clear_cache" ]; then wget --progress=bar:force https://franke.ms/msys64.tgz; tar xzf msys64.tgz; fi
+- if [ "${TRAVIS_BUILD_STAGE_NAME}" != "Clear cache" ]; then wget --progress=bar:force https://franke.ms/msys64.tgz; tar xzf msys64.tgz; fi
 jobs:
   include:
-  - stage: clear_cache
+  - stage: Clear cache
     script:
     - rm -rf amiga
     - mkdir -p amiga
