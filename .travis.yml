@@ -35,7 +35,9 @@ jobs:
   - stage: make gcc
     script:
     - git clone https://github.com/bebbo/amiga-gcc
-    - mkdir -p amiga-gcc/build-MSYS_NT-10.0/binutils
+    - mkdir -p projects/binutils
+    - echo "fake" > projects/binutils/configure
+    - mkdir -p amiga-gcc/build-MSYS_NT-10.0/binutils 
     - echo "fake" > amiga-gcc/build-MSYS_NT-10.0/binutils/Makefile
     - echo "done" > amiga-gcc/build-MSYS_NT-10.0/binutils/_done
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && PREFIX=$(realpath amiga) make -j3 info gcc'"
