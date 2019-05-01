@@ -5,15 +5,13 @@ cache:
   - /c/Users/travis/build/bebbo/crap0000/amiga/
   directories:
   - /c/Users/travis/build/bebbo/crap0000/msys64/
-before_install:
-- if [ "${TRAVIS_BUILD_STAGE_NAME}" == "Setup cache" ]; then wget --progress=bar:force https://franke.ms/msys64.tgz; tar xzf msys64.tgz; fi
-- if [ "${TRAVIS_BUILD_STAGE_NAME}" == "Create setup" ]; then choco install innosetup; fi
 jobs:
   include:
   - stage: Setup cache
     script:
     - rm -rf amiga
     - mkdir -p amiga
+    - if [ ! -f msys64/usr/bin/bash.exe ]; then wget --progress=bar:force https://franke.ms/msys64.tgz; rm -rf msys64; tar xzf msys64.tgz; fi
   - stage: make binutils
     script:
     - git clone https://github.com/bebbo/amiga-gcc
@@ -47,7 +45,7 @@ jobs:
     - mkdir -p      amiga-gcc/build-MSYS_NT-10.0/gcc
     - echo "done" > amiga-gcc/build-MSYS_NT-10.0/gcc/_done
     - echo "done" > amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk
-    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info newlib&); while [ ! -f $(realpath amiga)/m68k-amigaos/lib/libc.a ]; do date; sleep 30; done'"
+    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info newlib&); while [ ! -f $(realpath amiga)/bin/m68k-amigaos-gdb ]; do date; sleep 30; done'"
   - stage: make libnix
     script:
     - git clone https://github.com/bebbo/amiga-gcc
@@ -65,6 +63,7 @@ jobs:
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info libnix clib2&); while [ ! -f $(realpath amiga)/m68k-amigaos/libnix/lib/libnix.a ]; do date; sleep 30; done'"
   - stage: create setup
     script:
+    - choco install innosetup
     - git clone https://github.com/bebbo/amiga-gcc
     - echo "#define MyAppVersion \"$(date +%Y%m%d)\"" > setup2.iss
     - sed amiga-gcc/setup/setup2.iss -e "s|\\\\msys64\\\\opt\\\\amiga|$(echo $PWD | sed 's|/|\\\\|g' | cut -b4-)\\\\amiga|g" >> setup2.iss
