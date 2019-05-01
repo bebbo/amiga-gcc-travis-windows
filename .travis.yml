@@ -7,10 +7,11 @@ cache:
 jobs:
   include:
   - stage: Setup cache
+    before_install:
+    - if [ ! -f msys64/usr/bin/bash.exe ]; then wget --progress=bar:force https://franke.ms/msys64.tgz; rm -rf msys64; tar xzf msys64.tgz; fi
     script:
     - rm -rf amiga
     - mkdir -p amiga
-    - if [ ! -f msys64/usr/bin/bash.exe ]; then wget --progress=bar:force https://franke.ms/msys64.tgz; rm -rf msys64; tar xzf msys64.tgz; fi
   - stage: make binutils
     script:
     - git clone https://github.com/bebbo/amiga-gcc
@@ -61,8 +62,9 @@ jobs:
     - echo "done" > amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info libnix clib2 & pid=$!; while kill -0 $pid; do date; sleep 30; done)'"
   - stage: create setup
-    script:
+    before_install:
     - choco install innosetup
+    script:
     - git clone https://github.com/bebbo/amiga-gcc
     - echo "#define MyAppVersion \"$(date +%Y%m%d)\"" > setup2.iss
     - sed amiga-gcc/setup/setup2.iss -e "s|\\\\msys64\\\\opt\\\\amiga|$(echo $PWD | sed 's|/|\\\\|g' | cut -b4-)\\\\amiga|g" >> setup2.iss
@@ -89,3 +91,11 @@ jobs:
     - cp msys64/usr/bin/which.exe amiga/bin
     - cp msys64/usr/bin/make.exe  amiga/bin/_make.exe
     - powershell -executionpolicy bypass -command "cmd /c 'c:\\Program Files (x86)\\Inno Setup 5\\ISCC.exe' setup2.iss"
+deploy:
+  provider: releases
+  api_key:
+    secure: ahFeqlMYR6x9DA01B4NeBAqNKqv+ZxJoM0fpQrCzeKI+szah6M3THhhP8XO/PTBhUbM865wpoVg5J+l7GxFtH/Q7AB2wA1sEhpt79FhT4j43Ek8h5E18GKG9UGVZWRLDfhor6ewo3gjf8Q8Tw14MH5H4qdXbxQIHyU3PWoBuIX2Z63/8ad2CWAcSiAaqpK4wzKqR73cjHEH8xHJp5+Q1e5kEsvlksbu95pEVPqndpQ/9HUetwqgR/U6A0dPdY4GcQM8AX17SmvzbXrAOqRhegOg2/j2FnKa/w2m8WD89CxRDW/roRgCOOTe0JleBVqZzuLNaPHu/aRnTSC7wt4SfDbh/WVp1XfZKI5Y49evaljzx11C5PWpqaUk9n3ITg9bGxXcNbgYKo96S6chR33mlBdZWDt/3bWeQGp+liNiUMM57kRpxsLNP3yMNkvxVxAIJ/xMe+FWUJuKwMD/dLDNuTS+vqH0ezLAbuwWLn92G/9OPw24CRrusZ7OPQuZFenDBBj0kM4+1n11JksGgPwF43hPJbXs6u6CQAxVeYYzCMziF3klidoIqiFKz4cmyvxB73cWqRBGP2cr+qworJp41pNnazklRAgVUgoxqWLUNEqHzJ+qU21T1EpoaYXqdcMEv5SBQhOpv/bQmSXU25MGA7VlMrnxTziqVvztKZcA0jyo=
+  file: Output/setup-amiga-gcc.exe
+  skip_cleanup: true
+  on:
+    repo: bebbo/amiga-gcc
