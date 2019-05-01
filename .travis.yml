@@ -60,7 +60,7 @@ jobs:
     - echo "done" > amiga-gcc/build-MSYS_NT-10.0/newlib/_done
     - echo "done" > amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk
     - echo "done" > amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk
-    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info libnix clib2 & pid=$!; while kill -0 $pid; do date; sleep 30; done)'"
+    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info libnix clib2)& pid=$!; while kill -0 $pid; do date; sleep 30; done'"
   - stage: create setup
     before_install:
     - choco install innosetup
