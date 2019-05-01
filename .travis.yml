@@ -3,7 +3,6 @@ language: shell
 cache:
   directories:
   - /c/Users/travis/build/bebbo/crap0000/amiga/
-  directories:
   - /c/Users/travis/build/bebbo/crap0000/msys64/
 jobs:
   include:
