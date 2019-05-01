@@ -15,7 +15,7 @@ jobs:
   - stage: make binutils
     script:
     - git clone https://github.com/bebbo/amiga-gcc
-    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info binutils gdb gprof&); while [ ! -f $(realpath amiga)/m68k-amigaos/libnix/lib/libnix.a ]; do date; sleep 30; done'"
+    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info binutils gdb gprof & pid=$!; while kill -0 $pid; do date; sleep 30; done)'"
   - stage: make gcc
     script:
     - git clone https://github.com/bebbo/amiga-gcc
@@ -24,7 +24,7 @@ jobs:
     - mkdir -p      amiga-gcc/build-MSYS_NT-10.0/binutils 
     - echo "fake" > amiga-gcc/build-MSYS_NT-10.0/binutils/Makefile
     - echo "done" > amiga-gcc/build-MSYS_NT-10.0/binutils/_done
-    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info gcc&); while [ ! -f $(realpath amiga)/bin/m68k-amigaos-gcc ]; do date; sleep 30; done'"
+    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info gcc & pid=$!; while kill -0 $pid; do date; sleep 30; done)'"
   - stage: make ndk
     script:
     - git clone https://github.com/bebbo/amiga-gcc
@@ -45,7 +45,7 @@ jobs:
     - mkdir -p      amiga-gcc/build-MSYS_NT-10.0/gcc
     - echo "done" > amiga-gcc/build-MSYS_NT-10.0/gcc/_done
     - echo "done" > amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk
-    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info newlib&); while [ ! -f $(realpath amiga)/bin/m68k-amigaos-gdb ]; do date; sleep 30; done'"
+    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info newlib & pid=$!; while kill -0 $pid; do date; sleep 30; done)'"
   - stage: make libnix
     script:
     - git clone https://github.com/bebbo/amiga-gcc
@@ -60,7 +60,7 @@ jobs:
     - echo "done" > amiga-gcc/build-MSYS_NT-10.0/newlib/_done
     - echo "done" > amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk
     - echo "done" > amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk
-    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info libnix clib2&); while [ ! -f $(realpath amiga)/m68k-amigaos/libnix/lib/libnix.a ]; do date; sleep 30; done'"
+    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info libnix clib2 & pid=$!; while kill -0 $pid; do date; sleep 30; done)'"
   - stage: create setup
     script:
     - choco install innosetup
