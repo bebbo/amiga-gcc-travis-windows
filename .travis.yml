@@ -61,7 +61,7 @@ jobs:
     - echo "done" > amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk
     - echo "done" > amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info libnix clib2&); while [ ! -f $(realpath amiga)/m68k-amigaos/clib2/lib/libc.a ]; do date; sleep 30; done'"
-  - stage: create setup
+  - stage: Create_setup
     before_install:
     - choco install innosetup
     script:
@@ -99,5 +99,5 @@ deploy:
   skip_cleanup: true
   draft: true
   on:
-    condition: "${TRAVIS_BUILD_STAGE_NAME}" == "Create setup"
+    condition: ${TRAVIS_BUILD_STAGE_NAME} == Create_setup
  
