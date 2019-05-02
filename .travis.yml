@@ -25,7 +25,7 @@ jobs:
     - mkdir -p amiga-gcc/projects/binutils
     - touch    amiga-gcc/projects/binutils/configure
     - mkdir -p amiga-gcc/build-MSYS_NT-10.0/binutils
-    - touch    amiga-gcc/build-MSYS_NT-10.0/binutils/
+    - touch    amiga-gcc/build-MSYS_NT-10.0/binutils/Makefile
     - touch    amiga-gcc/build-MSYS_NT-10.0/binutils/_done
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 gcc&); while [ ! -f $(realpath amiga)/bin/m68k-amigaos-gcc ]; do date; sleep 30; done'"
   - stage: make ndk
@@ -37,7 +37,7 @@ jobs:
     - mkdir -p amiga-gcc/projects/binutils
     - touch    amiga-gcc/projects/binutils/configure
     - mkdir -p amiga-gcc/build-MSYS_NT-10.0/binutils
-    - touch    amiga-gcc/build-MSYS_NT-10.0/binutils/
+    - touch    amiga-gcc/build-MSYS_NT-10.0/binutils/Makefile
     - touch    amiga-gcc/build-MSYS_NT-10.0/binutils/_done
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && PREFIX=$(realpath amiga) make -j3 libamiga sfdc ndk ndk13 netinclude'"
   - stage: make newlib
@@ -57,15 +57,15 @@ jobs:
     - mkdir -p amiga-gcc/projects/fd2sfd
     - touch    amiga-gcc/projects/fd2sfd/configure
     - mkdir -p amiga-gcc/projects/fd2pragma
-    - touch    amiga-gcc/projects/fd2pragma/
+    - touch    amiga-gcc/projects/fd2pragma/makefile
     - mkdir -p amiga-gcc/build-Linux/binutils
-    - touch    amiga-gcc/build-Linux/binutils/
+    - touch    amiga-gcc/build-Linux/binutils/Makefile
     - touch    amiga-gcc/build-Linux/binutils/_done
     - mkdir -p amiga-gcc/build-Linux/gcc
-    - touch    amiga-gcc/build-Linux/gcc/
+    - touch    amiga-gcc/build-Linux/gcc/Makefile
     - touch    amiga-gcc/build-Linux/gcc/_done
     - mkdir -p amiga-gcc/build-Linux/fd2sfd
-    - touch    amiga-gcc/build-Linux/fd2sfd/
+    - touch    amiga-gcc/build-Linux/fd2sfd/Makefile
     - mkdir -p amiga-gcc/build-Linux/fd2pragma
     - touch    amiga-gcc/build-Linux/fd2pragma/fd2pragma
     - touch    amiga-gcc/amiga/bin/fd2sfd
@@ -91,15 +91,15 @@ jobs:
     - mkdir -p amiga-gcc/projects/fd2sfd
     - touch    amiga-gcc/projects/fd2sfd/configure
     - mkdir -p amiga-gcc/projects/fd2pragma
-    - touch    amiga-gcc/projects/fd2pragma/
+    - touch    amiga-gcc/projects/fd2pragma/makefile
     - mkdir -p amiga-gcc/build-Linux/binutils
-    - touch    amiga-gcc/build-Linux/binutils/
+    - touch    amiga-gcc/build-Linux/binutils/Makefile
     - touch    amiga-gcc/build-Linux/binutils/_done
     - mkdir -p amiga-gcc/build-Linux/gcc
-    - touch    amiga-gcc/build-Linux/gcc/
+    - touch    amiga-gcc/build-Linux/gcc/Makefile
     - touch    amiga-gcc/build-Linux/gcc/_done
     - mkdir -p amiga-gcc/build-Linux/fd2sfd
-    - touch    amiga-gcc/build-Linux/fd2sfd/
+    - touch    amiga-gcc/build-Linux/fd2sfd/Makefile
     - mkdir -p amiga-gcc/build-Linux/fd2pragma
     - touch    amiga-gcc/build-Linux/fd2pragma/fd2pragma
     - touch    amiga-gcc/amiga/bin/fd2sfd
@@ -109,7 +109,7 @@ jobs:
     - mkdir -p amiga-gcc/projects/sfdc
     - touch    amiga-gcc/projects/sfdc/configure
     - mkdir -p amiga-gcc/build-Linux/sfdc
-    - touch    amiga-gcc/build-Linux/sfdc/
+    - touch    amiga-gcc/build-Linux/sfdc/Makefile
     - touch    amiga-gcc/amiga/bin/sfdc
     - touch    amiga-gcc/build-Linux/sfdc/_done
     - touch    amiga-gcc/build-Linux/ndk-include_ndk0
@@ -118,7 +118,7 @@ jobs:
     - mkdir -p amiga-gcc/projects/newlib-cygwin/newlib
     - touch    amiga-gcc/projects/newlib-cygwin/newlib/configure
     - mkdir -p amiga-gcc/build-Linux/newlib/newlib
-    - touch    amiga-gcc/build-Linux/newlib/newlib/
+    - touch    amiga-gcc/build-Linux/newlib/newlib/Makefile
     - touch    amiga-gcc/build-Linux/newlib/newlib/libc.a
     - touch build-Linux/newlib/_done
     - mkdir -p amiga-gcc/projects/amiga-netinclude
