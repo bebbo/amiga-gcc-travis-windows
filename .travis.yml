@@ -6,6 +6,7 @@ cache:
 jobs:
   include:
   - stage: Setup cache
+    script:
     - rm -rf amiga msys64
     - mkdir -p amiga
   - stage: make binutils
