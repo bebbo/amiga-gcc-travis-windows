@@ -81,7 +81,6 @@ jobs:
     - if [ ! -f msys64/usr/bin/bash.exe ]; then wget --progress=bar:force https://franke.ms/msys64.tgz; rm -rf msys64; tar xzf msys64.tgz; fi
     script:
     - git clone https://github.com/bebbo/amiga-gcc
-rm -rf projects build-Linux
     - mkdir -p amiga-gcc/build-Linux
     - mkdir -p amiga-gcc/projects/binutils
     - touch    amiga-gcc/projects/binutils/configure
