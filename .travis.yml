@@ -11,12 +11,14 @@ jobs:
     - mkdir -p amiga
   - stage: make binutils
     before_install:
+    - powershell -command Set-MpPreference -DisableRealtimeMonitoring $true
     - if [ ! -f msys64/usr/bin/bash.exe ]; then wget --progress=bar:force https://franke.ms/msys64.tgz; rm -rf msys64; tar xzf msys64.tgz; fi
     script:
     - git clone https://github.com/bebbo/amiga-gcc
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info binutils gdb gprof&); while [ ! -f $(realpath amiga)/bin/m68k-amigaos-gdb ]; do date; sleep 30; done'"
   - stage: make gcc
     before_install:
+    - powershell -command Set-MpPreference -DisableRealtimeMonitoring $true
     - if [ ! -f msys64/usr/bin/bash.exe ]; then wget --progress=bar:force https://franke.ms/msys64.tgz; rm -rf msys64; tar xzf msys64.tgz; fi
     script:
     - git clone https://github.com/bebbo/amiga-gcc
@@ -28,6 +30,7 @@ jobs:
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info gcc&); while [ ! -f $(realpath amiga)/bin/m68k-amigaos-gcc ]; do date; sleep 30; done'"
   - stage: make ndk
     before_install:
+    - powershell -command Set-MpPreference -DisableRealtimeMonitoring $true
     - if [ ! -f msys64/usr/bin/bash.exe ]; then wget --progress=bar:force https://franke.ms/msys64.tgz; rm -rf msys64; tar xzf msys64.tgz; fi
     script:
     - git clone https://github.com/bebbo/amiga-gcc
@@ -39,6 +42,7 @@ jobs:
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && PREFIX=$(realpath amiga) make -j3 info ndk ndk13'"
   - stage: make newlib
     before_install:
+    - powershell -command Set-MpPreference -DisableRealtimeMonitoring $true
     - if [ ! -f msys64/usr/bin/bash.exe ]; then wget --progress=bar:force https://franke.ms/msys64.tgz; rm -rf msys64; tar xzf msys64.tgz; fi
     script:
     - git clone https://github.com/bebbo/amiga-gcc
@@ -53,6 +57,7 @@ jobs:
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info newlib&); while [ ! -f $(realpath amiga)/m68k-amigaos/lib/libc.a ]; do date; sleep 30; done'"
   - stage: make libnix
     before_install:
+    - powershell -command Set-MpPreference -DisableRealtimeMonitoring $true
     - if [ ! -f msys64/usr/bin/bash.exe ]; then wget --progress=bar:force https://franke.ms/msys64.tgz; rm -rf msys64; tar xzf msys64.tgz; fi
     script:
     - git clone https://github.com/bebbo/amiga-gcc
@@ -70,6 +75,7 @@ jobs:
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info libnix clib2&); while [ ! -f $(realpath amiga)/m68k-amigaos/clib2/lib/libc.a ]; do date; sleep 30; done'"
   - stage: Create_setup
     before_install:
+    - powershell -command Set-MpPreference -DisableRealtimeMonitoring $true
     - choco install innosetup
     script:
     - git clone https://github.com/bebbo/amiga-gcc
