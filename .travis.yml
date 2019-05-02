@@ -47,33 +47,33 @@ jobs:
     script:
     - PATH=$PATH:$PWD/amiga-gcc/amiga/bin
     - git clone https://github.com/bebbo/amiga-gcc
-    - mkdir -p amiga-gcc/build-Linux
+    - mkdir -p amiga-gcc/build-MSYS_NT-10.0
     - mkdir -p amiga-gcc/projects/binutils
     - touch    amiga-gcc/projects/binutils/configure
     - mkdir -p amiga-gcc/projects/gcc
     - touch    amiga-gcc/projects/gcc/configure
-    - touch    amiga-gcc/build-Linux/_lha_done
+    - touch    amiga-gcc/build-MSYS_NT-10.0/_lha_done
     - touch    amiga-gcc/projects/NDK_3.9.info
     - mkdir -p amiga-gcc/projects/fd2sfd
     - touch    amiga-gcc/projects/fd2sfd/configure
     - mkdir -p amiga-gcc/projects/fd2pragma
     - touch    amiga-gcc/projects/fd2pragma/makefile
-    - mkdir -p amiga-gcc/build-Linux/binutils
-    - touch    amiga-gcc/build-Linux/binutils/Makefile
-    - touch    amiga-gcc/build-Linux/binutils/_done
-    - mkdir -p amiga-gcc/build-Linux/gcc
-    - touch    amiga-gcc/build-Linux/gcc/Makefile
-    - touch    amiga-gcc/build-Linux/gcc/_done
-    - mkdir -p amiga-gcc/build-Linux/fd2sfd
-    - touch    amiga-gcc/build-Linux/fd2sfd/Makefile
-    - mkdir -p amiga-gcc/build-Linux/fd2pragma
-    - touch    amiga-gcc/build-Linux/fd2pragma/fd2pragma
+    - mkdir -p amiga-gcc/build-MSYS_NT-10.0/binutils
+    - touch    amiga-gcc/build-MSYS_NT-10.0/binutils/Makefile
+    - touch    amiga-gcc/build-MSYS_NT-10.0/binutils/_done
+    - mkdir -p amiga-gcc/build-MSYS_NT-10.0/gcc
+    - touch    amiga-gcc/build-MSYS_NT-10.0/gcc/Makefile
+    - touch    amiga-gcc/build-MSYS_NT-10.0/gcc/_done
+    - mkdir -p amiga-gcc/build-MSYS_NT-10.0/fd2sfd
+    - touch    amiga-gcc/build-MSYS_NT-10.0/fd2sfd/Makefile
+    - mkdir -p amiga-gcc/build-MSYS_NT-10.0/fd2pragma
+    - touch    amiga-gcc/build-MSYS_NT-10.0/fd2pragma/fd2pragma
     - touch    amiga-gcc/amiga/bin/fd2sfd
     - touch    amiga-gcc/amiga/bin/fd2pragma
-    - touch    amiga-gcc/build-Linux/fd2sfd/_done
-    - touch    amiga-gcc/build-Linux/fd2pragma/_done
-    - touch    amiga-gcc/build-Linux/ndk-include_ndk0
-    - touch    amiga-gcc/build-Linux/ndk-include_ndk
+    - touch    amiga-gcc/build-MSYS_NT-10.0/fd2sfd/_done
+    - touch    amiga-gcc/build-MSYS_NT-10.0/fd2pragma/_done
+    - touch    amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk0
+    - touch    amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info newlib&); while [ ! -f $(realpath amiga)/m68k-amigaos/lib/libc.a ]; do date; sleep 30; done'"
   - stage: make libnix
     before_install:
@@ -81,49 +81,49 @@ jobs:
     - if [ ! -f msys64/usr/bin/bash.exe ]; then wget --progress=bar:force https://franke.ms/msys64.tgz; rm -rf msys64; tar xzf msys64.tgz; fi
     script:
     - git clone https://github.com/bebbo/amiga-gcc
-    - mkdir -p amiga-gcc/build-Linux
+    - mkdir -p amiga-gcc/build-MSYS_NT-10.0
     - mkdir -p amiga-gcc/projects/binutils
     - touch    amiga-gcc/projects/binutils/configure
     - mkdir -p amiga-gcc/projects/gcc
     - touch    amiga-gcc/projects/gcc/configure
-    - touch    amiga-gcc/build-Linux/_lha_done
+    - touch    amiga-gcc/build-MSYS_NT-10.0/_lha_done
     - touch    amiga-gcc/projects/NDK_3.9.info
     - mkdir -p amiga-gcc/projects/fd2sfd
     - touch    amiga-gcc/projects/fd2sfd/configure
     - mkdir -p amiga-gcc/projects/fd2pragma
     - touch    amiga-gcc/projects/fd2pragma/makefile
-    - mkdir -p amiga-gcc/build-Linux/binutils
-    - touch    amiga-gcc/build-Linux/binutils/Makefile
-    - touch    amiga-gcc/build-Linux/binutils/_done
-    - mkdir -p amiga-gcc/build-Linux/gcc
-    - touch    amiga-gcc/build-Linux/gcc/Makefile
-    - touch    amiga-gcc/build-Linux/gcc/_done
-    - mkdir -p amiga-gcc/build-Linux/fd2sfd
-    - touch    amiga-gcc/build-Linux/fd2sfd/Makefile
-    - mkdir -p amiga-gcc/build-Linux/fd2pragma
-    - touch    amiga-gcc/build-Linux/fd2pragma/fd2pragma
+    - mkdir -p amiga-gcc/build-MSYS_NT-10.0/binutils
+    - touch    amiga-gcc/build-MSYS_NT-10.0/binutils/Makefile
+    - touch    amiga-gcc/build-MSYS_NT-10.0/binutils/_done
+    - mkdir -p amiga-gcc/build-MSYS_NT-10.0/gcc
+    - touch    amiga-gcc/build-MSYS_NT-10.0/gcc/Makefile
+    - touch    amiga-gcc/build-MSYS_NT-10.0/gcc/_done
+    - mkdir -p amiga-gcc/build-MSYS_NT-10.0/fd2sfd
+    - touch    amiga-gcc/build-MSYS_NT-10.0/fd2sfd/Makefile
+    - mkdir -p amiga-gcc/build-MSYS_NT-10.0/fd2pragma
+    - touch    amiga-gcc/build-MSYS_NT-10.0/fd2pragma/fd2pragma
     - touch    amiga-gcc/amiga/bin/fd2sfd
     - touch    amiga-gcc/amiga/bin/fd2pragma
-    - touch    amiga-gcc/build-Linux/fd2sfd/_done
-    - touch    amiga-gcc/build-Linux/fd2pragma/_done
+    - touch    amiga-gcc/build-MSYS_NT-10.0/fd2sfd/_done
+    - touch    amiga-gcc/build-MSYS_NT-10.0/fd2pragma/_done
     - mkdir -p amiga-gcc/projects/sfdc
     - touch    amiga-gcc/projects/sfdc/configure
-    - mkdir -p amiga-gcc/build-Linux/sfdc
-    - touch    amiga-gcc/build-Linux/sfdc/Makefile
+    - mkdir -p amiga-gcc/build-MSYS_NT-10.0/sfdc
+    - touch    amiga-gcc/build-MSYS_NT-10.0/sfdc/Makefile
     - touch    amiga-gcc/amiga/bin/sfdc
-    - touch    amiga-gcc/build-Linux/sfdc/_done
-    - touch    amiga-gcc/build-Linux/ndk-include_ndk0
-    - touch    amiga-gcc/build-Linux/ndk-include_ndk
-    - touch    amiga-gcc/build-Linux/ndk-include_ndk13
+    - touch    amiga-gcc/build-MSYS_NT-10.0/sfdc/_done
+    - touch    amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk0
+    - touch    amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk
+    - touch    amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk13
     - mkdir -p amiga-gcc/projects/newlib-cygwin/newlib
     - touch    amiga-gcc/projects/newlib-cygwin/newlib/configure
-    - mkdir -p amiga-gcc/build-Linux/newlib/newlib
-    - touch    amiga-gcc/build-Linux/newlib/newlib/Makefile
-    - touch    amiga-gcc/build-Linux/newlib/newlib/libc.a
-    - touch build-Linux/newlib/_done
+    - mkdir -p amiga-gcc/build-MSYS_NT-10.0/newlib/newlib
+    - touch    amiga-gcc/build-MSYS_NT-10.0/newlib/newlib/Makefile
+    - touch    amiga-gcc/build-MSYS_NT-10.0/newlib/newlib/libc.a
+    - touch build-MSYS_NT-10.0/newlib/_done
     - mkdir -p amiga-gcc/projects/amiga-netinclude
     - touch    amiga-gcc/projects/amiga-netinclude/README.md
-    - touch    amiga-gcc/build-Linux/_netinclude
+    - touch    amiga-gcc/build-MSYS_NT-10.0/_netinclude
     - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info libnix clib2&); while [ ! -f $(realpath amiga)/m68k-amigaos/clib2/lib/libc.a ]; do date; sleep 30; done'"
   - stage: Create_setup
     before_install:
