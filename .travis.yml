@@ -15,7 +15,7 @@ jobs:
   - stage: make binutils
     script:
     - git clone https://github.com/bebbo/amiga-gcc
-    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info binutils gdb gprof&); while [ ! -f $(realpath amiga)/m68k-amigaos/libnix/lib/libnix.a ]; do date; sleep 30; done'"
+    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && (PREFIX=$(realpath amiga) make -j3 info binutils gdb gprof&); while [ ! -f $(realpath amiga)/bin/m68k-amigaos-gdb ]; do date; sleep 30; done'"
   - stage: make gcc
     script:
     - git clone https://github.com/bebbo/amiga-gcc
