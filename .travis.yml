@@ -134,6 +134,7 @@ jobs:
     before_install:
     - powershell -command 'Set-MpPreference -DisableRealtimeMonitoring $true'
     - choco install innosetup
+    - if [ ! -f msys64/usr/bin/bash.exe ]; then wget --progress=bar:force https://franke.ms/msys64.tgz; rm -rf msys64; tar xzf msys64.tgz; fi
     script:
     - git clone https://github.com/bebbo/amiga-gcc
     - echo "#define MyAppVersion \"$(date +%Y%m%d)\"" > setup2.iss
