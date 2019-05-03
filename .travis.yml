@@ -53,6 +53,8 @@ jobs:
     - mkdir -p amiga-gcc/projects/gcc
     - touch    amiga-gcc/projects/gcc/configure
     - touch    amiga-gcc/build-MSYS_NT-10.0/_lha_done
+    - mkdir    amiga-gcc/download
+    - touch    amiga-gcc/download/NDK39.lha
     - touch    amiga-gcc/projects/NDK_3.9.info
     - mkdir -p amiga-gcc/projects/fd2sfd
     - touch    amiga-gcc/projects/fd2sfd/configure
@@ -88,6 +90,8 @@ jobs:
     - mkdir -p amiga-gcc/projects/gcc
     - touch    amiga-gcc/projects/gcc/configure
     - touch    amiga-gcc/build-MSYS_NT-10.0/_lha_done
+    - mkdir    amiga-gcc/download
+    - touch    amiga-gcc/download/NDK39.lha
     - touch    amiga-gcc/projects/NDK_3.9.info
     - mkdir -p amiga-gcc/projects/fd2sfd
     - touch    amiga-gcc/projects/fd2sfd/configure
@@ -121,7 +125,7 @@ jobs:
     - mkdir -p amiga-gcc/build-MSYS_NT-10.0/newlib/newlib
     - touch    amiga-gcc/build-MSYS_NT-10.0/newlib/newlib/Makefile
     - touch    amiga-gcc/build-MSYS_NT-10.0/newlib/newlib/libc.a
-    - touch build-MSYS_NT-10.0/newlib/_done
+    - touch    amiga-gcc/build-MSYS_NT-10.0/newlib/_done
     - mkdir -p amiga-gcc/projects/amiga-netinclude
     - touch    amiga-gcc/projects/amiga-netinclude/README.md
     - touch    amiga-gcc/build-MSYS_NT-10.0/_netinclude
