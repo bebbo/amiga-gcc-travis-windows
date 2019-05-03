@@ -39,7 +39,7 @@ jobs:
     - mkdir -p amiga-gcc/build-MSYS_NT-10.0/binutils
     - touch    amiga-gcc/build-MSYS_NT-10.0/binutils/Makefile
     - touch    amiga-gcc/build-MSYS_NT-10.0/binutils/_done
-    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && PREFIX=$(realpath amiga) make -j3 libamiga sfdc ndk ndk13 netinclude'"
+    - powershell -executionpolicy bypass -command "msys64\\usr\\bin\\bash.exe --login -c 'cd amiga-gcc && PREFIX=$(realpath amiga) make -j3 libamiga fd2sfd fd2pragma sfdc ndk ndk13 netinclude'"
   - stage: make newlib
     before_install:
     - powershell -command 'Set-MpPreference -DisableRealtimeMonitoring $true'
