@@ -69,6 +69,7 @@ jobs:
     - touch    amiga-gcc/build-MSYS_NT-10.0/fd2sfd/Makefile
     - mkdir -p amiga-gcc/build-MSYS_NT-10.0/fd2pragma
     - touch    amiga-gcc/build-MSYS_NT-10.0/fd2pragma/fd2pragma
+    - mkdir -p amiga/bin
     - touch    amiga/bin/fd2sfd
     - touch    amiga/bin/fd2pragma
     - touch    amiga-gcc/build-MSYS_NT-10.0/fd2sfd/_done
@@ -105,6 +106,7 @@ jobs:
     - touch    amiga-gcc/build-MSYS_NT-10.0/fd2sfd/Makefile
     - mkdir -p amiga-gcc/build-MSYS_NT-10.0/fd2pragma
     - touch    amiga-gcc/build-MSYS_NT-10.0/fd2pragma/fd2pragma
+    - mkdir -p amiga/bin
     - touch    amiga/bin/fd2sfd
     - touch    amiga/bin/fd2pragma
     - touch    amiga-gcc/build-MSYS_NT-10.0/fd2sfd/_done
