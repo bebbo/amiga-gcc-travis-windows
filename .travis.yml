@@ -2,7 +2,7 @@ os: windows
 language: shell
 cache:
   directories:
-  - /c/Users/travis/build/bebbo/crap0000/amiga/
+  - amiga
 jobs:
   include:
   - stage: Setup cache
