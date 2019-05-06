@@ -70,8 +70,8 @@ jobs:
     - mkdir -p amiga-gcc/build-MSYS_NT-10.0/fd2pragma
     - touch    amiga-gcc/build-MSYS_NT-10.0/fd2pragma/fd2pragma
     - mkdir -p amiga/bin
-    - touch    amiga/bin/fd2sfd
-    - touch    amiga/bin/fd2pragma
+    - touch    amiga/bin/fd2sfd.exe
+    - touch    amiga/bin/fd2pragma.exe
     - touch    amiga-gcc/build-MSYS_NT-10.0/fd2sfd/_done
     - touch    amiga-gcc/build-MSYS_NT-10.0/fd2pragma/_done
     - touch    amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk0
@@ -107,15 +107,15 @@ jobs:
     - mkdir -p amiga-gcc/build-MSYS_NT-10.0/fd2pragma
     - touch    amiga-gcc/build-MSYS_NT-10.0/fd2pragma/fd2pragma
     - mkdir -p amiga/bin
-    - touch    amiga/bin/fd2sfd
-    - touch    amiga/bin/fd2pragma
+    - touch    amiga/bin/fd2sfd.exe
+    - touch    amiga/bin/fd2pragma.exe
     - touch    amiga-gcc/build-MSYS_NT-10.0/fd2sfd/_done
     - touch    amiga-gcc/build-MSYS_NT-10.0/fd2pragma/_done
     - mkdir -p amiga-gcc/projects/sfdc
     - touch    amiga-gcc/projects/sfdc/configure
     - mkdir -p amiga-gcc/build-MSYS_NT-10.0/sfdc
     - touch    amiga-gcc/build-MSYS_NT-10.0/sfdc/Makefile
-    - touch    amiga/bin/sfdc
+    - touch    amiga/bin/sfdc.exe
     - touch    amiga-gcc/build-MSYS_NT-10.0/sfdc/_done
     - touch    amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk0
     - touch    amiga-gcc/build-MSYS_NT-10.0/ndk-include_ndk
